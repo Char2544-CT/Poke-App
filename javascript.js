@@ -1,4 +1,27 @@
+// Function to fetch pokemon
+async function fetchPoke(pokeName) {
+    try{
+        //fetch Poke with await
+        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokeName}`);
+        const pokemonData = await response.json();
+        return pokemonData;
+    } catch (error) {
+        console.error('Ya goofed it:', error);
+    }
+}
 
+document.addEventListener('DOMContentLoaded', async () => {
+    const pikachuData = await fetchPoke('pikachu');
+    const pokemonInfoelement = document.getElementById('gallery');
+
+    pokemonInfoelement.innerHTML = `
+    <h2>${pikachuData.name}</h2>
+    <hr>
+    <img src="${pikachuData.sprites.front_default}" alt="${pikachuData.name}">
+    <hr>
+    <h3>Abilities:</h3>
+    `;
+});
 
 
 
