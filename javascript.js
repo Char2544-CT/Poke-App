@@ -1,6 +1,3 @@
-//ensures global use of function fetchPoke
-window.fetchPoke = fetchPoke;
-
 // Function to fetch pokemon
 async function fetchPoke(pokeName) {
     try{
@@ -13,12 +10,14 @@ async function fetchPoke(pokeName) {
     }
 }
 
+//Get HTML elements and assign them a variable
 const searchButton = document.getElementById('searchButton');
 const searchInput = document.getElementById('searchInput');
 const pokemonInfoelement = document.getElementById('gallery');
 
+//Event listener for button click
 searchButton.addEventListener('click', async (event) => {
-    let userInput = searchInput.value.trim();
+    let userInput = searchInput.value.trim(); //trim() for no spaces before or after user Input
     if (userInput) {
         const pokemonData = await fetchPoke(userInput.toLowerCase());
         if (pokemonData) {
